@@ -45,6 +45,8 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    overflow: hidden;
+    transition: all ease 0.3s;
 }
 
 .chatWindowBody {
@@ -54,6 +56,7 @@
     background-size: cover;
     background-position: center;
     background-image: url('https://i.pinimg.com/564x/cf/14/0d/cf140dac517f37fc801b6b91aaf76fea--originals.jpg');
+    padding: 20px 30px;
 }
 
 .chatWindowFooter {
@@ -86,5 +89,16 @@
 .pos {
     display: flex;
     margin: 0 15px;
+}
+
+.emojiArea {
+    height: 200px;
+    overflow-x: hidden;
+    transition: all ease 0.3s;
+}
+
+.emoji-picker-react {
+    width: auto !important;
+    background: none;
 }
 
