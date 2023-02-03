@@ -102,3 +102,13 @@
     background: none;
 }
 
+.chatWindowBody::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .chatWindowBody::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, .2);
+  }
+  
+

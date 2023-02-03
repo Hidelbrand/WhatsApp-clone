@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import './ChatWindow.css';
 import EmojiPicker from 'emoji-picker-react';
 import SearchIcon from '@mui/icons-material/Search';
@@ -12,7 +12,9 @@ import MessageItem from './MessageItem';
 
 
 
-const ChatWindow = () => {
+const ChatWindow = ({user}) => {
+
+    const body = useRef();
 
     let recognition = null;
     let SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -23,7 +25,42 @@ const ChatWindow = () => {
     const [emojiOpen, setEmojiOpen] = useState(false);
     const [text, setText] = useState('');
     const [listening, setListening] = useState(false);
-    const [list, setList] = useState([{}, {}, {}]);
+    const [list, setList] = useState([
+      {author: 123, body: 'bla bla bla'}, 
+      {author: 1234, body: 'bla bla bla'}, 
+      {author: 123, body: 'bla bla bla'},
+      {author: 123, body: 'bla bla bla'}, 
+      {author: 1234, body: 'bla bla bla'}, 
+      {author: 123, body: 'bla bla bla'},
+      {author: 123, body: 'bla bla bla'}, 
+      {author: 1234, body: 'bla bla bla'}, 
+      {author: 123, body: 'bla bla bla'},
+      {author: 123, body: 'bla bla bla'}, 
+      {author: 1234, body: 'bla bla bla'}, 
+      {author: 123, body: 'bla bla bla'},
+      {author: 123, body: 'bla bla bla'}, 
+      {author: 1234, body: 'bla bla bla'}, 
+      {author: 123, body: 'bla bla bla'},
+      {author: 123, body: 'bla bla bla'}, 
+      {author: 1234, body: 'bla bla bla'}, 
+      {author: 123, body: 'bla bla bla'},
+      {author: 123, body: 'bla bla bla'}, 
+      {author: 1234, body: 'bla bla bla'}, 
+      {author: 123, body: 'bla bla bla'},
+      {author: 123, body: 'bla bla bla'}, 
+      {author: 1234, body: 'bla bla bla'}, 
+      {author: 123, body: 'bla bla bla'},
+      {author: 123, body: 'bla bla bla'}, 
+      {author: 1234, body: 'bla bla bla'}, 
+      {author: 123, body: 'bla bla bla'},
+    ]);
+
+    useEffect(() => {
+      if(body.current.scrollHeight > body.current.offsetHeight) {
+        body.current.scrollTop = body.current.scrollHeight - body.current.offsetHeight
+      }
+    }, [list])
+    
 
     const handleEmojiclick = (e, emojiObject) => {
         setText(text + emojiObject.emoji)
@@ -79,11 +116,12 @@ const ChatWindow = () => {
           </div>
         </div>
       </div>
-      <div className="chatWindowBody">
+      <div ref={body} className="chatWindowBody">
         {list.map((item, key)=>(
             <MessageItem 
                 key={key}
                 data={item}
+                user={user}
             />
         ))}
       </div>
